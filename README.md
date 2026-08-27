@@ -1,123 +1,192 @@
 # Meu Quadro To Do ⚡
 
-Um sistema pessoal de gerenciamento de tarefas **Meu Quadro To Do** (estilo Kanban), projetado para ser leve, direto ao ponto, rodar **100% localhost** e com um visual minimalista e moderno em **Preto e Branco**.
+Um sistema pessoal de gerenciamento de tarefas no estilo **Kanban**, desenvolvido para ser leve, direto ao ponto e executado **100% localmente**.
+
+O projeto possui uma interface minimalista em preto e branco e utiliza **React no frontend, Node.js/Express no backend e PostgreSQL como banco de dados**.
 
 ---
 
-## ✨ Principais Funcionalidades
+## ✨ Funcionalidades
 
-- 🗂️ **Gestão de Múltiplos Projetos**: Crie, selecione, renomeie e exclua projetos na barra lateral.
-- 📋 **Quadro Kanban com 4 Colunas Padrão**:
-  - 📝 *Para fazer*
-  - ⚡ *Fazendo*
-  - ✅ *Completo*
-  - ❌ *Não deu certo*
-  - *(Você pode adicionar, renomear ou excluir colunas quando quiser)*
-- 🔄 **Arrastar e Soltar (Drag and Drop)**: Mova tarefas entre colunas com resposta instantânea e sincronização em tempo real no banco.
-- 📝 **Edição Completa de Tarefas**: Modal dedicado para detalhar títulos e notas longas (com atalho `Ctrl + Enter` para salvar).
-- 🔍 **Busca Instantânea**: Filtro de cards em tempo real na barra superior.
-- 🐘 **Banco de Dados PostgreSQL**: Estrutura relacional sólida, com script de inicialização automática e integridade em cascata.
-- ⚡ **Zero Bloatware**: Sem necessidade de login, sem assinaturas, sem consumo excessivo de memória. Roda local na sua máquina.
+* 🗂️ **Múltiplos projetos** — Crie, selecione, renomeie e exclua projetos.
+* 📋 **Quadro Kanban** — Organização das tarefas em colunas personalizáveis.
+* 🔄 **Drag and Drop** — Mova tarefas entre colunas de forma intuitiva.
+* 📝 **Edição de tarefas** — Títulos e descrições detalhadas através de um modal dedicado.
+* 🔍 **Busca instantânea** — Filtre tarefas em tempo real.
+* 🐘 **PostgreSQL** — Banco de dados relacional com inicialização automatizada.
+* ⚡ **100% Localhost** — Sem login, assinaturas ou dependência de serviços externos.
+* 🧪 **Testes automatizados** — Suíte de testes de integração para validar as principais operações do sistema.
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## 🛠️ Tecnologias
 
-- **Frontend**: React 18, Vite, Tailwind CSS, Lucide Icons, `@hello-pangea/dnd`
-- **Backend**: Node.js, Express, PostgreSQL (`pg`)
-- **Design**: Estética monocromática minimalista (Dark Mode Obsidian)
+### Frontend
+
+* React 18
+* Vite
+* Tailwind CSS
+* Lucide Icons
+* `@hello-pangea/dnd`
+
+### Backend
+
+* Node.js
+* Express
+* PostgreSQL
+* `pg`
+
+### Arquitetura
+
+```text
+React + Vite
+     ↓
+REST API
+     ↓
+Node.js + Express
+     ↓
+PostgreSQL
+```
 
 ---
 
-## 🚀 Como Instalar e Rodar
+## 🚀 Como instalar e executar
 
 ### 1. Pré-requisitos
-- [Node.js](https://nodejs.org/) (v18 ou superior)
-- [PostgreSQL](https://www.postgresql.org/) rodando na sua máquina (porta padrão `5432`)
+
+Antes de começar, certifique-se de ter instalado:
+
+* [Node.js](https://nodejs.org/) v18 ou superior
+* [PostgreSQL](https://www.postgresql.org/) com a porta padrão `5432`
 
 ---
 
-### 2. Configurar o Banco de Dados
+### 2. Clone o projeto
 
-1. Acesse a pasta `server/` e verifique as credenciais no arquivo `.env` (ou crie a partir do `.env.example`):
-   ```env
-   PORT=3001
-   DB_HOST=localhost
-   DB_PORT=5432
-   DB_USER=postgres
-   DB_PASSWORD=sua_senha_aqui
-   DB_NAME=clickup_todo
-   ```
-
-2. Execute o comando de inicialização do banco:
-   ```bash
-   npm run db:init
-   ```
-   > 💡 *Esse script cria automaticamente o banco de dados `clickup_todo`, as tabelas necessárias e os dados iniciais.*
-   
-   *(Caso prefira rodar manualmente pelo pgAdmin ou DBeaver, há também o script SQL pronto em [`server/src/schema.sql`](server/src/schema.sql)).*
+```bash
+git clone https://github.com/EnzoConverso/MeuQuadroToDo.git
+cd MeuQuadroToDo
+```
 
 ---
 
-### 3. Instalar Dependências
+### 3. Configure o banco de dados
 
-Na raiz do projeto, instale os pacotes do frontend e backend de uma só vez:
+Entre na pasta `server` e crie um arquivo `.env` baseado no `.env.example`.
+
+Exemplo:
+
+```env
+PORT=3001
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=postgres
+DB_PASSWORD=sua_senha_aqui
+DB_NAME=clickup_todo
+```
+
+Depois, na raiz do projeto, execute:
+
+```bash
+npm run db:init
+```
+
+Esse comando inicializa o banco de dados e cria as tabelas necessárias.
+
+Caso prefira configurar o banco manualmente, o schema SQL está disponível em:
+
+`server/src/schema.sql`
+
+---
+
+### 4. Instale as dependências
+
+Na raiz do projeto:
+
 ```bash
 npm run install:all
 ```
 
 ---
 
-### 4. Iniciar a Aplicação
+### 5. Execute a aplicação
 
-#### No Windows (1 Clique):
-Dê um duplo clique no arquivo:
-```cmd
+#### Windows — inicialização rápida
+
+Execute:
+
+```text
 start.bat
 ```
 
-#### Via Terminal:
+#### Via terminal
+
 ```bash
 npm run dev
 ```
 
-Abra seu navegador em: **[http://localhost:5173](http://localhost:5173)**
+Depois acesse:
+
+**http://localhost:5173**
 
 ---
 
-## 🧪 Testes Automatizados
+## 🧪 Testes
 
-O sistema conta com uma suíte de testes de integração ponta a ponta:
+O projeto possui uma suíte de testes automatizados para validar as principais funcionalidades da API e integração com o banco de dados.
+
+Execute:
+
 ```bash
 npm test
 ```
 
 ---
 
-## 📂 Estrutura de Pastas
+## 📂 Estrutura do projeto
 
-```
-├── client/                 # Interface React + Vite + Tailwind
+```text
+MeuQuadroToDo/
+│
+├── client/                     # Frontend React + Vite
 │   ├── src/
-│   │   ├── components/     # Sidebar, KanbanBoard, Column, CardItem, CardModal
-│   │   ├── services/       # Cliente HTTP (API)
-│   │   └── App.jsx         # Estado global e lógica de drag-and-drop
-├── server/                 # Servidor Express + PostgreSQL
+│   │   ├── components/         # Componentes da interface
+│   │   ├── services/           # Comunicação com a API
+│   │   └── App.jsx             # Aplicação principal
+│   └── package.json
+│
+├── server/                     # Backend Node.js + Express
 │   ├── src/
-│   │   ├── db.js           # Pool PostgreSQL e auto-migration
-│   │   ├── init-db.js      # Script de inicialização do banco
-│   │   ├── schema.sql      # Schema SQL puro
-│   │   ├── routes.js       # Endpoints REST (CRUD e movimentação)
-│   │   └── index.js        # Entry point do servidor
-│   └── .env                # Variáveis de ambiente
+│   │   ├── db.js               # Conexão com PostgreSQL
+│   │   ├── init-db.js          # Inicialização do banco
+│   │   ├── schema.sql          # Estrutura do banco
+│   │   ├── routes.js            # Endpoints REST
+│   │   └── index.js             # Entry point
+│   ├── .env.example
+│   └── package.json
+│
 ├── scripts/
-│   ├── start-dev.js        # Inicialização simultânea
-│   └── test-system.js      # Suíte de testes automatizados
-└── start.bat               # Executável rápido para Windows
+│   ├── start-dev.js             # Inicialização da aplicação
+│   └── test-system.js           # Testes automatizados
+│
+├── .gitignore
+├── package.json
+├── README.md
+└── start.bat
 ```
+
+---
+
+## 🔐 Observação sobre segurança
+
+Este projeto foi desenvolvido para execução **localmente (localhost)**.
+
+O backend não possui autenticação de usuários e utiliza configurações de CORS adequadas para um ambiente de desenvolvimento local. Caso o projeto seja adaptado para produção ou disponibilizado publicamente como serviço, recomenda-se implementar autenticação, autorização, validação adicional de entradas e uma política de CORS restritiva.
+
+As credenciais do banco de dados devem ser configuradas através de variáveis de ambiente e **não devem ser adicionadas ao repositório**.
 
 ---
 
 ## 📄 Licença
 
-Este projeto é de código aberto e livre para uso pessoal ou modificação.
+Este projeto está licenciado sob a [MIT License](LICENSE).
